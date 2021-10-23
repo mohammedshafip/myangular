@@ -1,0 +1,95 @@
+<div style="padding: 13px;">   
+    <div class="col-md-6" [hidden] = "isShow" id="formDiv" >
+        <h2>My Class</h2>
+        <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform.value)" ngNativeValidate>
+            <input type = "hidden" name = "class_ID"  [(ngModel)]="class_ID">
+            <input type = "text" name = "cls_code" id="cls_code" required class="form-control" [(ngModel)]="cls_code" placeholder = "Class Code" >
+            <br/>
+          
+            <input type = "text" name = "cls_name" class="form-control" required placeholder = "Class Name" [(ngModel)]="cls_name">
+            <br/>
+          
+            <textarea name = "cls_description" class="form-control"  placeholder = "Your message" [(ngModel)]="cls_description"></textarea>
+            <br/>
+            <input type = "submit" value = "Save" class="btn btn-primary">
+          </form>
+          <br/>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-6">
+        <div style="padding-bottom: 10px;">
+            <button (click) = toggleDisplay() type="button" class="btn btn-primary" aria-label="Left Align" id="btnAdd">
+                <span class="glyphicon glyphicon glyphicon-plus " aria-hidden="true"></span>Add
+              </button>
+            </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-6">
+
+<h2>My Class </h2>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of myclasses">
+            <td>{{product.class_ID}}</td>
+            <td>{{product.cls_code}}</td>
+            <td>{{product.cls_name}}</td>
+            <td>{{product.cls_description}}</td>            
+            <td>
+              <button type="button" class="btn btn-default" aria-label="Left Align" (click)="getclassstd(product)">
+                <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default" aria-label="Left Align" (click)="editpost(product)">
+                <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default" aria-label="Left Align" (click)="deletepost(product)">
+                <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+            </td>
+        </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<div class="col-md-6" [hidden] = "isShowStd">
+  <h2>({{clsnamestd}}) Students </h2>
+   <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>std_firstname</th>
+          <th>std_lastname</th>
+          <th>std_dateofbirth</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let std of myclassstd">
+              <td>{{std.std_ID}}</td>
+              <td>{{std.std_firstname}}</td>
+              <td>{{std.std_lastname}}</td>
+              <td>{{std.std_dateofbirth}}</td>  
+          </tr>
+        
+      </tbody>
+    </table>
+    <div style="padding-bottom: 10px;">
+      <button (click) = toggleDisplaystd() type="button" class="btn btn-primary" aria-label="Left Align" id="btnAdd">
+          <span class="glyphicon glyphicon glyphicon-plus " aria-hidden="true"></span>Close
+        </button>
+      </div>
+  </div>
+
+
+
+
+
+</div>
